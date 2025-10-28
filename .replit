@@ -5,3 +5,29 @@ channel = "stable-24_05"
 
 [deployment]
 run = ["sh", "-c", "Run command"]
+
+[agent]
+expertMode = true
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Run Python"
+
+[[workflows.workflow]]
+name = "Run Python"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python AA.py"
+
+[workflows.workflow.metadata]
+outputType = "console"
